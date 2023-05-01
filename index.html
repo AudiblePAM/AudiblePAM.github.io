@@ -1,0 +1,434 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <title>PAM: Audible Sound Multi-beamforming Using Nonlinearty</title>
+        <meta charset="utf-8">
+
+        <!--  Google Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+        <meta name="google-site-verification" content="S58Ohwv_5YMmWlFeB6aC23Q7f20l0bCFKmwAYBE_z5U" />
+
+        <!-- MathJax -->
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+        <!-- Chart.js -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2/dist/Chart.min.js"></script>
+
+        <link rel="stylesheet" href="assets/style.css" />
+        <link rel="stylesheet" href="assets/padding.css" />
+
+        <link rel="canonical" href="https://AudiblePAM.github.io/" />
+
+        <script language="JavaScript">
+        var loc = window.location.href+'';
+        if (loc.indexOf('http://')==0){
+            window.location.href = loc.replace('http://','https://');
+        }
+        </script>
+
+    </head>
+
+    <body>
+        <div class="header">
+            <h1 class="mt-5">PAM: Audible Sound Multi-beamforming Using Nonlinearty</h1>
+            <h3 style="color: #A40;">
+                Submitted to USENIX NSDI 2024.
+            </h3>
+            <h3>
+                Date: May 1, 2023.
+            </h3>
+        </div>
+        
+
+        <div class="yt-demo">
+            <hr>
+            <div class="row">
+                <div class="col-md-4 pt-4">
+                    <div class="video-container">
+                        <iframe class="youtube-video" src="https://www.youtube.com/embed/ZNhbs6lj6a0?modestbranding=1&playsinline=1&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen ></iframe>
+                    </div>
+                    <h3>Demo: Comparison with AirPods</h3>  
+                </div>
+                <div class="col-md-4 pt-4">
+                    <div class="video-container">
+                        <iframe class="youtube-video" src="https://www.youtube.com/embed/AVtFa0dN4mQ?modestbranding=1&playsinline=1&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen modestbranding></iframe>
+                    </div>
+                    <h3>Demo: System Explanation</h3>                    
+                </div>
+                <div class="col-md-4 pt-4">
+                    <div class="video-container">
+                        <iframe class="youtube-video" src="https://www.youtube.com/embed/7cnIl91vUBI?modestbranding=1&playsinline=1&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen modestbranding="1"></iframe>
+                    </div>
+                    <h3>Demo: Noisy Cafe</h3>
+                </div>
+            </div>
+            <hr>
+        </div>
+
+        <div class="narrow-container">
+            <div class="download pt-4">
+                <a href="https://arxiv.org/abs/2206.13611" target=_blank>[Paper] </a>&nbsp;
+                <a href="videos.zip" download> [Download Demos]</a>
+                <a href="https://github.com/vivjay30/clearbuds" target=_blank> [Code - ML] </a>&nbsp;
+                <a href="https://github.com/uw-x/clearbuds-ios" target=_blank> [Code - iOS App] </a>&nbsp;
+                <a href="https://github.com/uw-x/clearbuds-fw" target=_blank> [Code - Firmware] </a>&nbsp;
+                <a href="https://github.com/uw-x/clearbuds-pd" target=_blank> [Code - Mechanicals] </a>&nbsp;
+                <a href="https://github.com/uw-x/clearbuds-hw" target=_blank> [Code - PCB] </a>&nbsp;
+
+
+            </div>
+            <div class="abstract">
+                <h1>Abstract</h1>
+                <p>
+                    We present ClearBuds, a state-of-the-art hardware and software system for real-time speech enhancement. Our neural network runs completely on an iphone, allowing you to supress unwanted noises while taking phone calls on the go. ClearBuds bridges state-of-the-art deep learning for blind audio source separation and in-ear mobile systems by making two key technical  contributions: 1) a new wireless earbud design capable of operating as a synchronized, binaural microphone array, and 2) a lightweight dual-channel speech enhancement neural network that runs on a mobile device. Results show that our wireless earbuds  achieve a  synchronization error less than 64 microseconds and 
+                    our network has a runtime of 21.4 ms on an accompanying mobile phone. 
+                </p>
+            </div>
+
+            <br>
+            <br>
+            <div class="row" style="text-align: center">
+                <div class="col-md-2 pt-4">
+                    <img src="assets/images/flow-diagram-6.png" style="width: 80%">
+                    <p>
+                        Our goal is to isolate a person's voice in the presence of background noise (e.g. street noise) or other people talking. We perform this separation using a pair of custom synchronized wireless earbuds and a lightweight neural network that runs on an iPhone.
+                    </p>
+
+                </div>
+                <div class="col-md-2 pt-4">
+                    <img src="assets/images/clearbuds.jpg" style="width: 80%">   
+                    <p>
+                        This is a picture of the earbuds. A quarter is provided for a size comparison.
+                    </p>
+
+                </div>
+            </div>
+
+        </div>
+        <br>
+        <br>
+        <hr>
+        <br>
+        <br>
+       <div class="comparisons">
+            <h1>Comparisons</h1>
+            <p>We show comparisons with existing methods on a challenging synthetic audio mixture. Different combinations of background voices and noises are shown</a></p>
+            <br>
+            
+            <br>
+            <div class="comparisons-desktop" align="center">
+
+                <h2> Scenario 1 (Speaker + Other Speaker + BG Noise)</h2>
+                <div class="audio">
+                    <audio class="input-mixture" controls>
+                        <source src="demos/synthetic_examples/Voice_BG_BGVoice/mixture.wav" type="audio/wav">
+                    </audio>
+                </div>
+                <h4 style="text-align: center">Input Mixture</h4>
+                <br>
+                <br>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="audio">
+                                <audio controls>
+                                    <source src="demos/synthetic_examples/Voice_BG_BGVoice/gt.wav" type="audio/wav">
+                                </audio>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="audio">
+                                <audio controls>
+                                    <source src="demos/synthetic_examples/Voice_BG_BGVoice/cb_net.wav" type="audio/wav">
+                                </audio>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="audio">
+                                <audio controls>
+                                    <source src="demos/synthetic_examples/Voice_BG_BGVoice/cb_conv_tasnet.wav" type="audio/wav">
+                                </audio>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>GT</th>
+                            <th>Ours</th>
+                            <th>Conv Tas-Net [1]</th>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+                <br>
+                <br>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="audio">
+                                <audio controls>
+                                    <source src="demos/synthetic_examples/Voice_BG_BGVoice/demucs.wav" type="audio/wav">
+                                </audio>
+                                </div>
+                            </td>
+                            <td>
+                            <div class="audio">
+                                <audio controls>
+                                    <source src="demos/synthetic_examples/Voice_BG_BGVoice/irm.wav" type="audio/wav">
+                                </audio>
+                            </div>
+                            </td>
+                            <td>
+                                <div class="audio">
+                                <audio controls>
+                                    <source src="demos/synthetic_examples/Voice_BG_BGVoice/ibm.wav" type="audio/wav">
+                                </audio>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Demucs [2]</th>
+                            <th>Perfect Spectrogram Mask (Ratio)</th>
+                            <th>Perfect Spectrogram Mask (Binary)</th>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <h2> Scenario 2 (Speaker + BG Noise)</h2>
+                <div class="audio">
+                    <audio class="input-mixture" controls>
+                        <source src="demos/synthetic_examples/Voice_BG/mixture.wav" type="audio/wav">
+                    </audio>
+                </div>
+                <h4 style="text-align: center">Input Mixture</h4>
+                <br>
+                <br>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="audio">
+                                <audio controls>
+                                    <source src="demos/synthetic_examples/Voice_BG/gt.wav" type="audio/wav">
+                                </audio>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="audio">
+                                <audio controls>
+                                    <source src="demos/synthetic_examples/Voice_BG/cb_net.wav" type="audio/wav">
+                                </audio>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="audio">
+                                <audio controls>
+                                    <source src="demos/synthetic_examples/Voice_BG/cb_conv_tasnet.wav" type="audio/wav">
+                                </audio>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>GT</th>
+                            <th>Ours</th>
+                            <th>Conv Tas-Net [1]</th>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+                <br>
+                <br>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="audio">
+                                <audio controls>
+                                    <source src="demos/synthetic_examples/Voice_BG/demucs.wav" type="audio/wav">
+                                </audio>
+                                </div>
+                            </td>
+                            <td>
+                            <div class="audio">
+                                <audio controls>
+                                    <source src="demos/synthetic_examples/Voice_BG/irm.wav" type="audio/wav">
+                                </audio>
+                            </div>
+                            </td>
+                            <td>
+                                <div class="audio">
+                                <audio controls>
+                                    <source src="demos/synthetic_examples/Voice_BG/ibm.wav" type="audio/wav">
+                                </audio>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Demucs [2]</th>
+                            <th>Perfect Spectrogram Mask (Ratio)</th>
+                            <th>Perfect Spectrogram Mask (Binary)</th>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <h2> Scenario 3 (Speaker + Other Speaker)</h2>
+                <div class="audio">
+                    <audio class="input-mixture" controls>
+                        <source src="demos/synthetic_examples/Voice_BGVoice/mixture.wav" type="audio/wav">
+                    </audio>
+                </div>
+                <h4 style="text-align: center">Input Mixture</h4>
+                <br>
+                <br>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="audio">
+                                <audio controls>
+                                    <source src="demos/synthetic_examples/Voice_BGVoice/gt.wav" type="audio/wav">
+                                </audio>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="audio">
+                                <audio controls>
+                                    <source src="demos/synthetic_examples/Voice_BGVoice/cb_net.wav" type="audio/wav">
+                                </audio>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="audio">
+                                <audio controls>
+                                    <source src="demos/synthetic_examples/Voice_BGVoice/cb_conv_tasnet.wav" type="audio/wav">
+                                </audio>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>GT</th>
+                            <th>Ours</th>
+                            <th>Conv Tas-Net [1]</th>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+                <br>
+                <br>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="audio">
+                                <audio controls>
+                                    <source src="demos/synthetic_examples/Voice_BGVoice/demucs.wav" type="audio/wav">
+                                </audio>
+                                </div>
+                            </td>
+                            <td>
+                            <div class="audio">
+                                <audio controls>
+                                    <source src="demos/synthetic_examples/Voice_BGVoice/irm.wav" type="audio/wav">
+                                </audio>
+                            </div>
+                            </td>
+                            <td>
+                                <div class="audio">
+                                <audio controls>
+                                    <source src="demos/synthetic_examples/Voice_BGVoice/ibm.wav" type="audio/wav">
+                                </audio>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Demucs [2]</th>
+                            <th>Perfect Spectrogram Mask (Ratio)</th>
+                            <th>Perfect Spectrogram Mask (Binary)</th>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <h2> Comparison with Krisp.ai</h2>
+                <div class="audio">
+                    <audio class="input-mixture" controls>
+                        <source src="demos/krisp_comparison/mixture.wav" type="audio/wav">
+                    </audio>
+                </div>
+                <h4 style="text-align: center">Input Mixture</h4>
+                <br>
+                <br>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="audio">
+                                <audio controls>
+                                    <source src="demos/krisp_comparison/gt.wav" type="audio/wav">
+                                </audio>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="audio">
+                                <audio controls>
+                                    <source src="demos/krisp_comparison/cb_net.wav" type="audio/wav">
+                                </audio>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="audio">
+                                <audio controls>
+                                    <source src="demos/krisp_comparison/krisp.m4a" type="audio/wav">
+                                </audio>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>GT</th>
+                            <th>Ours</th>
+                            <th>Krisp [3]</th>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+            <br>
+            <p>
+                [1] Y. Luo and N. Mesgarani, "Conv-tasnet: Surpassing idealtime–frequency magnitude masking for speech separation". IEEE/ACM Transactions on Audio, Speech, and Language Processing, 2019.
+                <br><br>
+                [2] A. Defossez, G. Synnaeve, and Y. Adi,  "Real Time Speech Enhancement in the Waveform Domain," Iterspeech, 2020.
+                <br><br>
+                [3] <a href=www.krisp.ai>www.krisp.ai</a>
+            </p>
+        </div>
+        <br><br>
+        <hr>
+        <p>Keywords: Binaural speech enhancement, binaural noise suppression, smart earbuds, binaural source separation, airpods speech enhancement</p>
+        <p>Contact: clearbuds@cs.washington.edu</p>
+        <script src="assets/audio_height.js"></script> 
+    </body>
+</html>
