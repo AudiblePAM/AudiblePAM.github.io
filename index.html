@@ -45,88 +45,57 @@
         <div class="yt-demo">
             <hr>
             <div class="row">
-                <div class="col-md-4 pt-4">
+                <div class="col-md-1 pt-4">
                     <div class="video-container">
                         <iframe class="youtube-video" src="https://www.youtube.com/embed/ZNhbs6lj6a0?modestbranding=1&playsinline=1&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen ></iframe>
                     </div>
-                    <h3>Demo: Comparison with AirPods</h3>  
-                </div>
-                <div class="col-md-4 pt-4">
-                    <div class="video-container">
-                        <iframe class="youtube-video" src="https://www.youtube.com/embed/AVtFa0dN4mQ?modestbranding=1&playsinline=1&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen modestbranding></iframe>
-                    </div>
-                    <h3>Demo: System Explanation</h3>                    
-                </div>
-                <div class="col-md-4 pt-4">
-                    <div class="video-container">
-                        <iframe class="youtube-video" src="https://www.youtube.com/embed/7cnIl91vUBI?modestbranding=1&playsinline=1&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen modestbranding="1"></iframe>
-                    </div>
-                    <h3>Demo: Noisy Cafe</h3>
+                    <h3>Demo: PAM Prototype</h3>
+                    <p> 
+                        - scene 1 [10 seconds]: select two audios and the corresponding target angles (e.g., rock music at 60 degree and news at 0 degree. ) 
+                    </p>
+                    <p> 
+                        - scene 2 [5 seconds]: move the camera to our PAM system.
+                    </p>
+                    <p> 
+                        - scene 3 [15 seconds]: move to 0 degree -- we should only hear the news. Also Place a sub-windown in the corner to show the spectrum. 
+                    </p>
+                    <p> 
+                        - scene 4 [5 seconds]: move any where in the middle -- we should hear nothing and the spectrum in the sub-windown is flat.
+                    </p>
+                    <p> 
+                        - scene 5 [15 seconds]: move to 60 degree.
+                    </p>
                 </div>
             </div>
             <hr>
         </div>
 
-        <div class="narrow-container">
-            <div class="download pt-4">
-                <a href="https://arxiv.org/abs/2206.13611" target=_blank>[Paper] </a>&nbsp;
-                <a href="videos.zip" download> [Download Demos]</a>
-                <a href="https://github.com/vivjay30/clearbuds" target=_blank> [Code - ML] </a>&nbsp;
-                <a href="https://github.com/uw-x/clearbuds-ios" target=_blank> [Code - iOS App] </a>&nbsp;
-                <a href="https://github.com/uw-x/clearbuds-fw" target=_blank> [Code - Firmware] </a>&nbsp;
-                <a href="https://github.com/uw-x/clearbuds-pd" target=_blank> [Code - Mechanicals] </a>&nbsp;
-                <a href="https://github.com/uw-x/clearbuds-hw" target=_blank> [Code - PCB] </a>&nbsp;
-
-
-            </div>
-            <div class="abstract">
-                <h1>Abstract</h1>
-                <p>
-                    We present ClearBuds, a state-of-the-art hardware and software system for real-time speech enhancement. Our neural network runs completely on an iphone, allowing you to supress unwanted noises while taking phone calls on the go. ClearBuds bridges state-of-the-art deep learning for blind audio source separation and in-ear mobile systems by making two key technical  contributions: 1) a new wireless earbud design capable of operating as a synchronized, binaural microphone array, and 2) a lightweight dual-channel speech enhancement neural network that runs on a mobile device. Results show that our wireless earbuds  achieve a  synchronization error less than 64 microseconds and 
-                    our network has a runtime of 21.4 ms on an accompanying mobile phone. 
-                </p>
-            </div>
-
-            <br>
-            <br>
-            <div class="row" style="text-align: center">
-                <div class="col-md-2 pt-4">
-                    <img src="assets/images/flow-diagram-6.png" style="width: 80%">
-                    <p>
-                        Our goal is to isolate a person's voice in the presence of background noise (e.g. street noise) or other people talking. We perform this separation using a pair of custom synchronized wireless earbuds and a lightweight neural network that runs on an iPhone.
-                    </p>
-
-                </div>
-                <div class="col-md-2 pt-4">
-                    <img src="assets/images/clearbuds.jpg" style="width: 80%">   
-                    <p>
-                        This is a picture of the earbuds. A quarter is provided for a size comparison.
-                    </p>
-
-                </div>
-            </div>
-
-        </div>
-        <br>
-        <br>
-        <hr>
-        <br>
-        <br>
        <div class="comparisons">
             <h1>Comparisons</h1>
-            <p>We show comparisons with existing methods on a challenging synthetic audio mixture. Different combinations of background voices and noises are shown</a></p>
+            <p>We show comparisons with existing methods.</a></p>
             <br>
             
             <br>
             <div class="comparisons-desktop" align="center">
 
                 <h2> Scenario 1 (Speaker + Other Speaker + BG Noise)</h2>
-                <div class="audio">
+                <div class="col-md-2 pt-4">
+                    <div class="audio">
+                        <audio class="input-mixture" controls>
+                            <source src="demos/scenario1-sound1.wav" type="audio/wav">
+                        </audio>
+                    </div>
+                    <h4 style="text-align: center">Original sound 1: news</h4>
+                </div>
+                <div class="col-md-2 pt-4">
+                    <div class="audio">
                     <audio class="input-mixture" controls>
-                        <source src="demos/synthetic_examples/Voice_BG_BGVoice/mixture.wav" type="audio/wav">
+                        <source src="demos/scenario1-sound2.wav" type="audio/wav">
                     </audio>
                 </div>
-                <h4 style="text-align: center">Input Mixture</h4>
+                <h4 style="text-align: center">Original sound 2: rock music</h4>
+                </div>
+                
                 <br>
                 <br>
                 <table>
