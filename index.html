@@ -73,331 +73,149 @@
        <div class="comparisons">
             <h1>Comparisons</h1>
             <p>We show comparisons with existing methods.</a></p>
-            <br>
             
+            <br>
             <br>
             <div class="comparisons-desktop" align="center">
 
-                <h2> Scenario 1 (Speaker + Other Speaker + BG Noise)</h2>
-                <div class="col-md-2 pt-4">
-                    <div class="audio">
-                        <audio class="input-mixture" controls>
-                            <source src="demos/scenario1-sound1.wav" type="audio/wav">
-                        </audio>
-                    </div>
-                    <h4 style="text-align: center">Original sound 1: news</h4>
-                </div>
-                <div class="col-md-2 pt-4">
-                    <div class="audio">
-                    <audio class="input-mixture" controls>
-                        <source src="demos/scenario1-sound2.wav" type="audio/wav">
-                    </audio>
-                </div>
-                <h4 style="text-align: center">Original sound 2: rock music</h4>
-                </div>
-                
-                <br>
-                <br>
+                <h2> Scenario 1: two users -- news radio + rock music</h2>
                 <table>
                     <tbody>
                         <tr>
                             <td>
                                 <div class="audio">
                                 <audio controls>
-                                    <source src="demos/synthetic_examples/Voice_BG_BGVoice/gt.wav" type="audio/wav">
+                                    <source src="demos/scenario1-sound1.wav" type="audio/wav">
                                 </audio>
                                 </div>
                             </td>
                             <td>
                                 <div class="audio">
                                 <audio controls>
-                                    <source src="demos/synthetic_examples/Voice_BG_BGVoice/cb_net.wav" type="audio/wav">
-                                </audio>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="audio">
-                                <audio controls>
-                                    <source src="demos/synthetic_examples/Voice_BG_BGVoice/cb_conv_tasnet.wav" type="audio/wav">
+                                    <source src="demos/scenario1-sound2.wav" type="audio/wav">
                                 </audio>
                                 </div>
                             </td>
                         </tr>
                         <tr>
-                            <th>GT</th>
-                            <th>Ours</th>
-                            <th>Conv Tas-Net [1]</th>
-                        </tr>
-                    </tbody>
-
-                </table>
-
-                <br>
-                <br>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <div class="audio">
-                                <audio controls>
-                                    <source src="demos/synthetic_examples/Voice_BG_BGVoice/demucs.wav" type="audio/wav">
-                                </audio>
-                                </div>
-                            </td>
-                            <td>
-                            <div class="audio">
-                                <audio controls>
-                                    <source src="demos/synthetic_examples/Voice_BG_BGVoice/irm.wav" type="audio/wav">
-                                </audio>
-                            </div>
-                            </td>
-                            <td>
-                                <div class="audio">
-                                <audio controls>
-                                    <source src="demos/synthetic_examples/Voice_BG_BGVoice/ibm.wav" type="audio/wav">
-                                </audio>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Demucs [2]</th>
-                            <th>Perfect Spectrogram Mask (Ratio)</th>
-                            <th>Perfect Spectrogram Mask (Binary)</th>
-                        </tr>
-                    </tbody>
-                </table>
-
-
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <h2> Scenario 2 (Speaker + BG Noise)</h2>
-                <div class="audio">
-                    <audio class="input-mixture" controls>
-                        <source src="demos/synthetic_examples/Voice_BG/mixture.wav" type="audio/wav">
-                    </audio>
-                </div>
-                <h4 style="text-align: center">Input Mixture</h4>
-                <br>
-                <br>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <div class="audio">
-                                <audio controls>
-                                    <source src="demos/synthetic_examples/Voice_BG/gt.wav" type="audio/wav">
-                                </audio>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="audio">
-                                <audio controls>
-                                    <source src="demos/synthetic_examples/Voice_BG/cb_net.wav" type="audio/wav">
-                                </audio>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="audio">
-                                <audio controls>
-                                    <source src="demos/synthetic_examples/Voice_BG/cb_conv_tasnet.wav" type="audio/wav">
-                                </audio>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>GT</th>
-                            <th>Ours</th>
-                            <th>Conv Tas-Net [1]</th>
-                        </tr>
-                    </tbody>
-
-                </table>
-
-                <br>
-                <br>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <div class="audio">
-                                <audio controls>
-                                    <source src="demos/synthetic_examples/Voice_BG/demucs.wav" type="audio/wav">
-                                </audio>
-                                </div>
-                            </td>
-                            <td>
-                            <div class="audio">
-                                <audio controls>
-                                    <source src="demos/synthetic_examples/Voice_BG/irm.wav" type="audio/wav">
-                                </audio>
-                            </div>
-                            </td>
-                            <td>
-                                <div class="audio">
-                                <audio controls>
-                                    <source src="demos/synthetic_examples/Voice_BG/ibm.wav" type="audio/wav">
-                                </audio>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Demucs [2]</th>
-                            <th>Perfect Spectrogram Mask (Ratio)</th>
-                            <th>Perfect Spectrogram Mask (Binary)</th>
+                            <th>original sound at 0°: news radio</th>
+                            <th>original sound at 60°: rock music</th>
                         </tr>
                     </tbody>
                 </table>
 
                 <br>
                 <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <h2> Scenario 3 (Speaker + Other Speaker)</h2>
-                <div class="audio">
-                    <audio class="input-mixture" controls>
-                        <source src="demos/synthetic_examples/Voice_BGVoice/mixture.wav" type="audio/wav">
-                    </audio>
-                </div>
-                <h4 style="text-align: center">Input Mixture</h4>
-                <br>
-                <br>
+                <h3> Sound received at 0°</h3>
                 <table>
                     <tbody>
                         <tr>
                             <td>
                                 <div class="audio">
                                 <audio controls>
-                                    <source src="demos/synthetic_examples/Voice_BGVoice/gt.wav" type="audio/wav">
+                                    <source src="demos/scenario1-rx1-pam.wav" type="audio/wav">
                                 </audio>
                                 </div>
                             </td>
                             <td>
                                 <div class="audio">
                                 <audio controls>
-                                    <source src="demos/synthetic_examples/Voice_BGVoice/cb_net.wav" type="audio/wav">
+                                    <source src="demos/scenario1-rx1-sdm.wav" type="audio/wav">
                                 </audio>
                                 </div>
                             </td>
                             <td>
                                 <div class="audio">
                                 <audio controls>
-                                    <source src="demos/synthetic_examples/Voice_BGVoice/cb_conv_tasnet.wav" type="audio/wav">
+                                    <source src="demos/scenario1-rx1-zero.wav" type="audio/wav">
                                 </audio>
                                 </div>
                             </td>
                         </tr>
                         <tr>
-                            <th>GT</th>
-                            <th>Ours</th>
-                            <th>Conv Tas-Net [1]</th>
-                        </tr>
-                    </tbody>
-
-                </table>
-
-                <br>
-                <br>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <div class="audio">
-                                <audio controls>
-                                    <source src="demos/synthetic_examples/Voice_BGVoice/demucs.wav" type="audio/wav">
-                                </audio>
-                                </div>
-                            </td>
-                            <td>
-                            <div class="audio">
-                                <audio controls>
-                                    <source src="demos/synthetic_examples/Voice_BGVoice/irm.wav" type="audio/wav">
-                                </audio>
-                            </div>
-                            </td>
-                            <td>
-                                <div class="audio">
-                                <audio controls>
-                                    <source src="demos/synthetic_examples/Voice_BGVoice/ibm.wav" type="audio/wav">
-                                </audio>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Demucs [2]</th>
-                            <th>Perfect Spectrogram Mask (Ratio)</th>
-                            <th>Perfect Spectrogram Mask (Binary)</th>
+                            <th>ours</th>
+                            <th>spatial division multi-beamforming</th>
+                            <th>zero-forcing multi-beamforming</th>
                         </tr>
                     </tbody>
                 </table>
 
                 <br>
                 <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <h2> Comparison with Krisp.ai</h2>
-                <div class="audio">
-                    <audio class="input-mixture" controls>
-                        <source src="demos/krisp_comparison/mixture.wav" type="audio/wav">
-                    </audio>
-                </div>
-                <h4 style="text-align: center">Input Mixture</h4>
-                <br>
-                <br>
+                <h3> Sound received at 30°</h3>
                 <table>
                     <tbody>
                         <tr>
                             <td>
                                 <div class="audio">
                                 <audio controls>
-                                    <source src="demos/krisp_comparison/gt.wav" type="audio/wav">
+                                    <source src="demos/scenario1-rx2-pam.wav" type="audio/wav">
                                 </audio>
                                 </div>
                             </td>
                             <td>
                                 <div class="audio">
                                 <audio controls>
-                                    <source src="demos/krisp_comparison/cb_net.wav" type="audio/wav">
+                                    <source src="demos/scenario1-rx2-sdm.wav" type="audio/wav">
                                 </audio>
                                 </div>
                             </td>
                             <td>
                                 <div class="audio">
                                 <audio controls>
-                                    <source src="demos/krisp_comparison/krisp.m4a" type="audio/wav">
+                                    <source src="demos/scenario1-rx2-zero.wav" type="audio/wav">
                                 </audio>
                                 </div>
                             </td>
                         </tr>
                         <tr>
-                            <th>GT</th>
-                            <th>Ours</th>
-                            <th>Krisp [3]</th>
+                            <th>ours</th>
+                            <th>spatial division multi-beamforming</th>
+                            <th>zero-forcing multi-beamforming</th>
                         </tr>
                     </tbody>
+                </table>
 
+                <br>
+                <br>
+                <h3> Sound received at 60°</h3>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="audio">
+                                <audio controls>
+                                    <source src="demos/scenario1-rx3-pam.wav" type="audio/wav">
+                                </audio>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="audio">
+                                <audio controls>
+                                    <source src="demos/scenario1-rx3-sdm.wav" type="audio/wav">
+                                </audio>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="audio">
+                                <audio controls>
+                                    <source src="demos/scenario1-rx3-zero.wav" type="audio/wav">
+                                </audio>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>ours</th>
+                            <th>spatial division multi-beamforming</th>
+                            <th>zero-forcing multi-beamforming</th>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
             <br>
-            <p>
-                [1] Y. Luo and N. Mesgarani, "Conv-tasnet: Surpassing idealtime–frequency magnitude masking for speech separation". IEEE/ACM Transactions on Audio, Speech, and Language Processing, 2019.
-                <br><br>
-                [2] A. Defossez, G. Synnaeve, and Y. Adi,  "Real Time Speech Enhancement in the Waveform Domain," Iterspeech, 2020.
-                <br><br>
-                [3] <a href=www.krisp.ai>www.krisp.ai</a>
-            </p>
         </div>
         <br><br>
         <hr>
-        <p>Keywords: Binaural speech enhancement, binaural noise suppression, smart earbuds, binaural source separation, airpods speech enhancement</p>
-        <p>Contact: clearbuds@cs.washington.edu</p>
         <script src="assets/audio_height.js"></script> 
     </body>
 </html>
